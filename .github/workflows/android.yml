@@ -24,27 +24,19 @@ jobs:
           flutter-version: '3.19.x'
           channel: 'stable'
 
-      - name: Re-create Complete Flutter Project Structure
+      - name: Generate Android Project Scaffolding
         run: |
-          mkdir temp_app
-          cp pubspec.yaml temp_app/
-          cp -r lib temp_app/
-          cd temp_app
           flutter create . --platforms=android --org com.inspire.fogsafety
 
       - name: Install Dependencies
-        run: |
-          cd temp_app
-          flutter pub get
+        run: flutter pub get
 
       - name: Build APK
-        run: |
-          cd temp_app
-          flutter build apk --debug
+        run: flutter build apk --debug
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: inspire-fog-safety-apk
-          path: temp_app/build/app/outputs/flutter-apk/app-debug.apk
+          path: build/app/outputs/flutter-apk/app-debug.apk
           
