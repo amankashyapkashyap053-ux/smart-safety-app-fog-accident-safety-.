@@ -1,0 +1,23 @@
+name: fog_safety_app
+description: "Smart Accident Response & Fog Safety System for INSPIRE MANAK"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  sensors_plus: ^4.0.2
+  geolocator: ^10.1.0
+  flutter_tts: ^3.8.5
+  cupertino_icons: ^1.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  
