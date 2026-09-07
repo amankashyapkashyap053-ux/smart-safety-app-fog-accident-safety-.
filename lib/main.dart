@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:sensors_plus/sensors_plus.dart';
-import 'package0geolocator/geolocator.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
 void main() {
