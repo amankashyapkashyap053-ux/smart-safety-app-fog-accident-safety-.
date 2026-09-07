@@ -26,7 +26,7 @@ jobs:
 
       - name: Generate Android Project Scaffolding
         run: |
-          flutter create . --platforms=android --org com.inspire.fogsafety
+          flutter create . --project-name fog_safety_app --platforms=android --org com.inspire.fogsafety
 
       - name: Install Dependencies
         run: flutter pub get
