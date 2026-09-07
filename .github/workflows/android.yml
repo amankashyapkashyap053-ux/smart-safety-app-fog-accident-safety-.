@@ -34,6 +34,9 @@ jobs:
             --platforms=android \
             --org com.inspire.fogsafety
 
+      - name: Set Minimum Android SDK
+        run: |
+          sed -i 's/minSdkVersion flutter.minSdkVersion/minSdkVersion 21/' android/app/build.gradle
       - name: Restore pubspec.yaml
         run: cp pubspec.yaml.bak pubspec.yaml
 
