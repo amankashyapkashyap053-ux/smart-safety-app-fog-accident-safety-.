@@ -2,7 +2,7 @@ name: Build Flutter APK
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
@@ -18,21 +18,31 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
-          java-version: '17'
+          distribution: "temurin"
+          java-version: "17"
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.19.x'
-          channel: 'stable'
+          flutter-version: "3.19.x"
+          channel: "stable"
 
-      - name: Generate Android Project Scaffolding
+      - name: Generate Android Project
         run: |
-          flutter create . --project-name fog_safety_app --platforms=android --org com.inspire.fogsafety
+          flutter create . \
+            --project-name fog_safety_app \
+            --platforms=android \
+            --org com.inspire.fogsafety
 
       - name: Restore pubspec.yaml
         run: cp pubspec.yaml.bak pubspec.yaml
+
+      - name: Add Location Permissions
+        run: |
+          sed -i '/<manifest/a\
+          <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>\
+          <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>' \
+          android/app/src/main/AndroidManifest.xml
 
       - name: Install Dependencies
         run: flutter pub get
@@ -45,4 +55,3 @@ jobs:
         with:
           name: inspire-fog-safety-apk
           path: build/app/outputs/flutter-apk/app-debug.apk
-          
